@@ -35,7 +35,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-        <h1 className="h1-bold">Hi I m shubham</h1>
         <ClerkProvider
           appearance={{
             elements: {
