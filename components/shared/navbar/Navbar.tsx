@@ -2,6 +2,8 @@ import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import GlobalSearch from "../search/GlobalSearch";
+import MobileNav from "./MobileNav";
 import Theme from "./Theme";
 
 const Navbar = () => {
@@ -15,10 +17,10 @@ const Navbar = () => {
           alt="StackOverflow"
         />
         <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
-          Stack <span className="text-primary-500">Overflow</span>
+          Dev <span className="text-primary-500">Overflow</span>
         </p>
       </Link>
-      GlobalSearch
+      <GlobalSearch />
       <div className="flex-between gap-5">
         <Theme />
         <SignedIn>
@@ -34,7 +36,7 @@ const Navbar = () => {
             }}
           />
         </SignedIn>
-        MobileNavBar
+        <MobileNav />
       </div>
     </nav>
   );
