@@ -1,5 +1,5 @@
 "use client";
-import { sidebarLinks } from "@/app/constants";
+import { sidebarLinks } from "@/constants";
 import { Button } from "@/components/ui/button";
 import { SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
