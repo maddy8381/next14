@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Filter from "./Filter";
 import { AnswerFilters } from "@/constants/filters";
 import { getAnswers } from "@/lib/actions/answer.action";
@@ -16,38 +15,16 @@ interface Props {
   filter?: number;
 }
 
-interface ResultType {
-  answers: Array<{
-    _id: string;
-    author: {
-      clerkId: string;
-      picture: string;
-      name: string;
-    };
-    createdAt: Date;
-    content: string;
-  }>;
-}
-
-const AllAnswers = ({
+const AllAnswers = async ({
   questionId,
   userId,
   totalAnswers,
   page,
   filter,
 }: Props) => {
-  const [result, setResult] = useState<any>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getAnswers({
-        questionId,
-      });
-      //@ts-ignore
-      setResult(result); //TODO: check proper types
-    };
-    fetchData();
-  }, []);
+  const result = await getAnswers({
+    questionId,
+  });
 
   return (
     <div className="mt-11">
@@ -58,7 +35,7 @@ const AllAnswers = ({
       </div>
 
       <div>
-        {result?.answers?.map((answer: any) => (
+        {result.answers.map((answer) => (
           <article key={answer._id} className="light-border border-b py-10">
             <div className="flex items-center justify-between">
               <div className="mb-8 flex flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">

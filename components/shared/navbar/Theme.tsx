@@ -49,6 +49,7 @@ const Theme = () => {
                   localStorage.removeItem("theme");
                 }
               }}
+              key={item.label}
             >
               <Image
                 src={item.icon}

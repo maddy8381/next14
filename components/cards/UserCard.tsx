@@ -1,10 +1,8 @@
-"use client";
+import { getTopInteractedTags } from "@/lib/actions/tag.actions";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import RenderTag from "../shared/RenderTag";
-import { getTopInteractedTags } from "@/lib/actions/tag.action";
-import React, { useEffect, useState } from "react";
 
 interface Props {
   user: {
@@ -16,18 +14,8 @@ interface Props {
   };
 }
 
-const UserCard = ({ user }: Props) => {
-  const [interactedTags, setInteractedTags] = useState<
-    { _id: string; name: string }[]
-  >([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const interactedTags = await getTopInteractedTags({ userId: user._id });
-      setInteractedTags(interactedTags);
-    };
-    fetchData();
-  }, []);
+const UserCard = async ({ user }: Props) => {
+  const interactedTags = await getTopInteractedTags({ userId: user._id });
 
   return (
     <Link
@@ -55,7 +43,7 @@ const UserCard = ({ user }: Props) => {
         <div className="mt-5">
           {interactedTags.length > 0 ? (
             <div className="flex items-center gap-2">
-              {interactedTags.map((tag) => (
+              {interactedTags.map((tag: any) => (
                 <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
               ))}
             </div>
