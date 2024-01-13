@@ -1,13 +1,14 @@
 "use client";
+
 import { sidebarLinks } from "@/constants";
-import { Button } from "@/components/ui/button";
-import { SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import { Button } from "../ui/button";
+import { SignedOut, useAuth } from "@clerk/nextjs";
 
 const LeftSidebar = () => {
+  const { userId } = useAuth();
   const pathname = usePathname();
 
   return (
@@ -17,15 +18,24 @@ const LeftSidebar = () => {
           const isActive =
             (pathname.includes(item.route) && item.route.length > 1) ||
             pathname === item.route;
+
+          if (item.route === "/profile") {
+            if (userId) {
+              item.route = `${item.route}/${userId}`;
+            } else {
+              return null;
+            }
+          }
+
           return (
             <Link
               href={item.route}
-              key={item.route}
+              key={item.label}
               className={`${
                 isActive
                   ? "primary-gradient rounded-lg text-light-900"
                   : "text-dark300_light900"
-              } flex items-center justify-start gap-4 bg-transparent p-4`}
+              }  flex items-center justify-start gap-4 bg-transparent p-4`}
             >
               <Image
                 src={item.imgURL}
@@ -62,16 +72,17 @@ const LeftSidebar = () => {
               </span>
             </Button>
           </Link>
+
           <Link href="/sign-up">
-            <Button className="small-medium light-border-2  btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+            <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none">
               <Image
                 src="/assets/icons/sign-up.svg"
-                alt="sign-up"
+                alt="sign up"
                 width={20}
                 height={20}
                 className="invert-colors lg:hidden"
               />
-              <span className=" max-lg:hidden">Sign Up</span>
+              <span className="max-lg:hidden">Sign up</span>
             </Button>
           </Link>
         </div>
