@@ -1,14 +1,13 @@
-import { ClerkProvider } from "@clerk/nextjs";
+/* eslint-disable camelcase */
 import React from "react";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Inter, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
 
 import "./globals.css";
 import "../styles/prism.css";
-
 import { ThemeProvider } from "@/context/ThemeProvider";
 
-//Setting up Fonts
 const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -22,10 +21,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "NewStackOverflow",
-  description: "Platform for asking questions.",
+  title: "DevFlow",
+  description:
+    "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
   icons: {
-    icon: "assets/images/site-logo.svg",
+    icon: "/assets/images/site-logo.svg",
   },
 };
 

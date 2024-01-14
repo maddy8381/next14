@@ -2,8 +2,7 @@
 
 import React, { useEffect } from "react";
 
-import Prism from "prismjs"; //For rendering codeblock with proper colors and as a code
-//Its a lightweight syntax highlighter
+import Prism from "prismjs";
 import parse from "html-react-parser";
 
 import "prismjs/components/prism-python";
@@ -38,7 +37,7 @@ const ParseHTML = ({ data }: Props) => {
     Prism.highlightAll();
   }, []);
 
-  return <div>{parse(data)}</div>;
+  return <div className={"markdown w-full min-w-full"}>{parse(data)}</div>;
 };
 
 export default ParseHTML;
