@@ -1,5 +1,5 @@
 import QuestionCard from "@/components/cards/QuestionCard";
-import HomeFilters from "@/components/home/HomeFilters";
+import HomeFilters from "@/components/HomeComponent/HomeFilters";
 import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
 import Pagination from "@/components/shared/Pagination";
@@ -13,7 +13,7 @@ import { SearchParamsProps } from "@/types";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs";
-import LocalSearchbar from "@/components/shared/search/LocalSearchBar";
+import LocalSearchbar from "@/components/shared/search/LocalSearchBarShared";
 
 export const metadata: Metadata = {
   title: "Home | Dev Overflow",
